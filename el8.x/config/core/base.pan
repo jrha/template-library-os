@@ -21,7 +21,7 @@ variable OS_VERSION_PARAMS ?= dict(
     "minor", "x",
     "flavour", "x",
     "version", "el8x",
-    "arch", "x86_64",
+    "arch", PKG_ARCH_DEFAULT,
 );
 
 variable RPM_BASE_FLAVOUR = '8';
