@@ -2,9 +2,9 @@ unique template rpms/editors;
 
 prefix '/software/packages';
 
-'{emacs}' = nlist();
-'{emacs-nox}'     ?= nlist();
-'{emacs-gnuplot}' ?= nlist();
-'{emacs-auctex}'  ?= nlist();
-'{vim-enhanced}' = nlist();
-'{vim-X11}'       ?= nlist();
+'{emacs}' = dict();
+'{emacs-nox}'     ?= dict();
+'{emacs-gnuplot}' ?= dict();
+'{emacs-auctex}'  ?= dict();
+'{vim-enhanced}' = dict();
+'{vim-X11}'       ?= dict();

@@ -2,7 +2,7 @@
 
 unique template rpms/development-base-tools;
 
-include { 'rpms/group/development' };
+include 'rpms/group/development';
 
 '/software/packages' = {
     # Cmake

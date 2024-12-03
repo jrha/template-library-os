@@ -2,9 +2,9 @@ unique template config/core/iptables-services;
 
 # Install package providing iptables and ip6tables services
 '/software/packages' = {
-  pkg_repl('iptables-services');
+    pkg_repl('iptables-services');
 
-  SELF;
+    SELF;
 };
 
 # Disable and mask firewalld

@@ -2,8 +2,8 @@ unique template rpms/nfs-client;
 
 prefix '/software/packages';
 
-'{ypbind}' = nlist();
-'{autofs}' = nlist();
-'{nfs-utils}' = nlist();
-'{nfs4-acl-tools}' = nlist();
+'{ypbind}' = dict();
+'{autofs}' = dict();
+'{nfs-utils}' = dict();
+'{nfs4-acl-tools}' = dict();
 

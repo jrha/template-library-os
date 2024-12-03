@@ -4,7 +4,7 @@
 
 unique template repository/config/os;
 
-include { 'quattor/functions/repository' };
+include 'quattor/functions/repository';
 
 @{
 desc =  if true, add epel-testing repository
@@ -23,17 +23,17 @@ values = list of strings, each string being a template name. Non existing templa
 default = OS distrib, OS errata, OS fastbugs, OS site addons, EPEL, and optionally EPEL-Testing
 required = no
 }
-include { 'repository/config/quattor' };
+include 'repository/config/quattor';
 variable OS_REPOSITORY_LIST ?= {
-    append(OS_VERSION_PARAMS['version']+'_'+OS_VERSION_PARAMS['arch']);
-    append(OS_VERSION_PARAMS['version']+'_'+OS_VERSION_PARAMS['arch']+'_errata');
-    append(OS_VERSION_PARAMS['version']+'_'+OS_VERSION_PARAMS['arch']+'_updates');
-    append(OS_VERSION_PARAMS['major']+'_addons');
-    append(OS_VERSION_PARAMS['major']+'_epel');
+    append(OS_VERSION_PARAMS['version'] + '_' + OS_VERSION_PARAMS['arch']);
+    append(OS_VERSION_PARAMS['version'] + '_' + OS_VERSION_PARAMS['arch'] + '_errata');
+    append(OS_VERSION_PARAMS['version'] + '_' + OS_VERSION_PARAMS['arch'] + '_updates');
+    append(OS_VERSION_PARAMS['major'] + '_addons');
+    append(OS_VERSION_PARAMS['major'] + '_epel');
     if ( REPOSITORY_EPEL_TESTING_ENABLED ) {
-      append(OS_VERSION_PARAMS['major']+'_epel_testing');
+        append(OS_VERSION_PARAMS['major'] + '_epel_testing');
     };
     append('site');
 };
 
-'/software/repositories' = add_repositories(OS_REPOSITORY_LIST,YUM_OS_SNAPSHOT_NS);
+'/software/repositories' = add_repositories(OS_REPOSITORY_LIST, YUM_OS_SNAPSHOT_NS);

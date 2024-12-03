@@ -2,6 +2,6 @@ unique template rpms/document-viewers;
 
 prefix '/software/packages';
 
-'{evince}' = nlist();
-'{a2ps}' = nlist();
-'{xdvik}' = nlist();
+'{evince}' = dict();
+'{a2ps}' = dict();
+'{xdvik}' = dict();

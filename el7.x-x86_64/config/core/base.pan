@@ -13,20 +13,20 @@ variable OS_BASE_CONFIGURE_NETWORK ?= true;
 variable SITE_ADDITIONAL_PACKAGES ?= undef;
 
 # Default if not properly defined elsewhere, using the standard mechanism
-variable OS_VERSION_PARAMS ?= nlist(
+variable OS_VERSION_PARAMS ?= dict(
     "distribution", "el",
-    "family",       "el",
-    "major",        "el7",
+    "family", "el",
+    "major", "el7",
     "majorversion", "7",
-    "minor",        "x",
-    "flavour",      "x",
-    "version",      "el7x",
-    "arch",         "x86_64"
+    "minor", "x",
+    "flavour", "x",
+    "version", "el7x",
+    "arch", "x86_64"
 );
 
 variable RPM_BASE_FLAVOUR = '7';
 variable RPM_BASE_FLAVOUR_VERSIONID = 7;
-variable RPM_BASE_FLAVOUR_NAME = format('el%s',RPM_BASE_FLAVOUR_VERSIONID);
+variable RPM_BASE_FLAVOUR_NAME = format('el%s', RPM_BASE_FLAVOUR_VERSIONID);
 
 
 @{
@@ -46,13 +46,13 @@ default = based on YUM_OS_DISTRIBUTION contents
 required = no
 }
 variable YUM_OS_DISTRIBUTION_NAME ?= {
-  if ( is_defined(YUM_OS_DISTRIBUTION[OBJECT]) ) {
-    YUM_OS_DISTRIBUTION[OBJECT];
-  } else if ( is_defined(YUM_OS_DISTRIBUTION[OS_VERSION_PARAMS['major']]) ) {
-    YUM_OS_DISTRIBUTION[OS_VERSION_PARAMS['major']];
-  } else {
-    error("YUM_OS_DISTRIBUTION not defined: cannot determine OS distribution (YUM repository) to use");
-  };
+    if ( is_defined(YUM_OS_DISTRIBUTION[OBJECT]) ) {
+        YUM_OS_DISTRIBUTION[OBJECT];
+    } else if ( is_defined(YUM_OS_DISTRIBUTION[OS_VERSION_PARAMS['major']]) ) {
+        YUM_OS_DISTRIBUTION[OS_VERSION_PARAMS['major']];
+    } else {
+        error("YUM_OS_DISTRIBUTION not defined: cannot determine OS distribution (YUM repository) to use");
+    };
 };
 
 @{
@@ -71,13 +71,13 @@ default = false if OS_USE_IPTABLES_SERVICES=true else undef (nothing done)
 required = no
 }
 variable OS_ENABLE_FIREWALLD ?= if ( OS_USE_IPTABLES_SERVICES ) {
-                                   false;
-                                 } else {
-                                   undef;
-                                 };
+    false;
+} else {
+    undef;
+};
 variable ERROR = if ( OS_USE_IPTABLES_SERVICES && is_defined(OS_ENABLE_FIREWALLD) && OS_ENABLE_FIREWALLD ) {
-                   error('OS_ENABLE_FIREWALLD should not be set to true when OS_USE_IPTABLES_SERVICES is true');
-                 };
+    error('OS_ENABLE_FIREWALLD should not be set to true when OS_USE_IPTABLES_SERVICES is true');
+};
 
 
 variable OS_BASE_CONFIG_SITE ?= null;
@@ -103,15 +103,15 @@ include 'config/core/daemons';
 include 'config/core/boot';
 
 # Configure network, except if disabled
-variable DEBUG = debug(format('%s: OS_BASE_CONFIGURE_NETWORK=%s',OBJECT,to_string(OS_BASE_CONFIGURE_NETWORK)));
+variable DEBUG = debug('%s: OS_BASE_CONFIGURE_NETWORK=%s', OBJECT, OS_BASE_CONFIGURE_NETWORK);
 include if ( OS_BASE_CONFIGURE_NETWORK ) 'os/network/config';
 
 # Install/enable iptables services if needed or enable/disable firewalld according to OS_DISABLE_FIREWALLD
 include if ( OS_USE_IPTABLES_SERVICES ) {
-          'config/core/iptables-services';
-        } else if ( is_defined(OS_ENABLE_FIREWALLD) ) {
-          'config/core/firewalld';
-        };
+    'config/core/iptables-services';
+} else if ( is_defined(OS_ENABLE_FIREWALLD) ) {
+    'config/core/firewalld';
+};
 
 
 @{
@@ -167,6 +167,5 @@ prefix '/software/components/accounts';
 'kept_groups/wireshark' = '';
 
 # Local site OS configuration
-variable DEBUG = debug(format('%s: OS_BASE_CONFIG_SITE=%s',OBJECT,to_string(OS_BASE_CONFIG_SITE)));
+variable DEBUG = debug('%s: OS_BASE_CONFIG_SITE=%s', OBJECT, OS_BASE_CONFIG_SITE);
 include OS_BASE_CONFIG_SITE;
-

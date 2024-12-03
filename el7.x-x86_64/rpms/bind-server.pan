@@ -10,9 +10,9 @@ variable OS_BIND_CHROOTED ?= false;
 
 prefix '/software/packages';
 
-'{bind}' = nlist();
+'{bind}' = dict();
 '{bind-chroot}' = if ( OS_BIND_CHROOTED ) {
-                    nlist();
-                  } else {
-                    null;
-                  };
+    dict();
+} else {
+    null;
+};

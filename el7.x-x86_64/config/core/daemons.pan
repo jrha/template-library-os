@@ -49,15 +49,15 @@ variable OS_UNWANTED_DEFAULT_DAEMONS ?= {
     SELF;
 };
 
-"/software/components/chkconfig/service/" = {
+"/software/components/chkconfig/service" = {
     foreach(k; v; OS_WANTED_DEFAULT_DAEMONS) {
-        SELF[v]["on"]="";
-	SELF[v]["off"]=null;
-	SELF[v]["startstop"] = true;
+        SELF[v]["on"] = "";
+        SELF[v]["off"] = null;
+        SELF[v]["startstop"] = true;
     };
-    foreach(k;v;OS_UNWANTED_DEFAULT_DAEMONS) {
-        SELF[v]["on"]=null;
-        SELF[v]["off"]="";
+    foreach(k; v; OS_UNWANTED_DEFAULT_DAEMONS) {
+        SELF[v]["on"] = null;
+        SELF[v]["off"] = "";
         SELF[v]["startstop"] = true;
     };
     SELF;

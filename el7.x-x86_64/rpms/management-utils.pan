@@ -2,12 +2,12 @@ unique template rpms/management-utils;
 
 prefix '/software/packages';
 
-'{curl}' ?= nlist();
-'{dmidecode}' ?= nlist();
-'{less}' ?= nlist();
-'{logwatch}' ?= nlist();
-'{pciutils}' ?= nlist();
-'{screen}' ?= nlist();
-'{tzdata}' ?= nlist();
-'{udev}' ?= nlist();
+'{curl}' ?= dict();
+'{dmidecode}' ?= dict();
+'{less}' ?= dict();
+'{logwatch}' ?= dict();
+'{pciutils}' ?= dict();
+'{screen}' ?= dict();
+'{tzdata}' ?= dict();
+'{udev}' ?= dict();
 

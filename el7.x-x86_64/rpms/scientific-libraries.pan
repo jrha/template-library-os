@@ -2,6 +2,6 @@ unique template rpms/scientific-libraries;
 
 prefix '/software/packages';
 
-'{boost-devel}' = nlist();
-'{fftw-devel}' = nlist();
-'{gsl-devel}' = nlist();
+'{boost-devel}' = dict();
+'{fftw-devel}' = dict();
+'{gsl-devel}' = dict();
