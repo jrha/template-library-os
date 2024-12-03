@@ -16,7 +16,7 @@ desc = list of site-specific additional packages
 values = list of strings
 default = empty list
 required = no
-} 
+}
 final variable SITE_ADDITIONAL_PACKAGES ?= undef;
 
 # Default if not properly defined elsewhere, using the standard mechanism
@@ -28,7 +28,7 @@ final variable OS_VERSION_PARAMS ?= dict(
     "minor", "x",
     "flavour", "x",
     "version", "el9x",
-    "arch", "x86_64",
+    "arch", PKG_ARCH_DEFAULT,
 );
 
 final variable RPM_BASE_FLAVOUR = '9';
